@@ -53,6 +53,7 @@ const GamepadButtons = () => {
 
     return (
       <div>
+        <h2>Buttons</h2>
         <div className='buttons grid auto-cols-fr grid-rows-1 grid-flow-col gap-4 pb-10'>
           {gamepadState.buttons.map((button: GamepadButton, index) => (
             <div key={index} className='button data-[pressed="true"]:bg-green-300 flex flex-col justify-center items-center border rounded-md text-center' data-pressed={button.pressed || button.touched}>
@@ -62,7 +63,7 @@ const GamepadButtons = () => {
         </div>
         {gamepadState.axes.map((axis: number, index) => (
           <div>
-            <span>{getAxesLabels(index)}:</span> <span>{axis}</span>
+            <span>{getAxesLabels(index)}:</span> <span>{axis.toFixed(3)}</span>
             <progress key={index} className='w-full' value={axis + 1} max='2' />
           </div>
         ))}
@@ -71,7 +72,8 @@ const GamepadButtons = () => {
 
   return (
     <div className='p-10'>
-      <h1 className='pb-10'>Gamepad Buttons</h1>
+      <h1 className='pb-10'>Gamepad</h1>
+      <h2>Gamepad connected: {gamepadState?.id ?? 'No gamepad connected.'}</h2>
       {renderButtons()}
     </div>
   );
